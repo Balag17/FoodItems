@@ -1,32 +1,39 @@
 <div class="row">
   <div class="col-md-12">
-    <img src="" alt="" class="img-responsive">
+    <img [src]="oneSelectedRecipe.imagePath" alt="{{ oneSelectedRecipe.name }}" class="img-responsive"
+    style="max-height: 100px;">
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
-    <h1>Recipe Name</h1>
+    <h1> {{ oneSelectedRecipe.name }}</h1>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
     <div class="btn-group">
-      <button class="btn btn-primary dropdown-toggle">Manage Recipe <span class="caret"></span></button>
+      <button class="btn btn-primary dropdown-toggle" type="button"  data-toggle="dropdown">Manage Recipe <span class="caret"></span></button>
       <ul class="dropdown-menu">
-        <li><a href="#">To shopping list</a></li>
-        <li><a href="#"></a>Edit Recipe</li>
-        <li><a href="#"></a>Delete Recipe</li>
+        <li><a (click)="onAddingToShopping()" class="dropdown-item" style="cursor: pointer;">To shopping list</a></li>
+        <li><a class="dropdown-item" style="cursor: pointer;" (click)="onEditRecipe()">Edit Recipe</a></li>
+        <li><a class="dropdown-item" style="cursor: pointer;" (click)="onDelete()" >Delete Recipe</a></li>
       </ul>
     </div>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
-    Description
+    {{ oneSelectedRecipe.description }}
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
-    Ingredients
+    <ul class="list-group">
+      <li class="list-group-item"
+      *ngFor="let ing of oneSelectedRecipe.ingredients">
+      {{ing.name}} - ({{ing.amount}})
+    
+    </li>
+    </ul>
   </div>
 </div>
